@@ -6,7 +6,7 @@ export default function Main() {
     <Tabs>
       <Tabs.Screen
         name="index"
-        options={{ title: "hello man", headerShown: false }}
+        options={{ title: "Home", headerShown: false }}
       ></Tabs.Screen>
     </Tabs>
   );
