@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "reactnative",
-    "slug": "reactnative",
+    "name": "viler",
+    "slug": "viler",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/maps.png",
     "scheme": "reactnative",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
