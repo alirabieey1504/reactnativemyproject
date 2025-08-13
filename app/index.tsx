@@ -1,10 +1,4 @@
 import { Text, View } from "react-native";
 export default function Index() {
-  return (
-    <View className="flex-1 items-center justify-center ">
-      <Text className="text-3xl text-viler  text-center ">
-        welcom to react native ali
-      </Text>
-    </View>
-  );
+  return <View className="flex-1 bg- items-center justify-center "></View>;
 }

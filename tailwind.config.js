@@ -6,6 +6,7 @@ module.exports = {
     extend: {
       colors: {
         viler: "#43c567",
+        primary: "#1E0B4B",
       },
     },
   },

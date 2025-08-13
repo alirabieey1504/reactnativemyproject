@@ -11,12 +11,12 @@ type typeIcon = {
   icon: iconName;
 };
 const TabIcon = ({ title, focused, icon }: typeIcon): React.JSX.Element => {
-  const imagesource = Images[icon] || Images.home;
+  const imageIcon = Images[icon] || Images.home;
   if (focused) {
     return (
-      <View className="flex flex-row flex-1 min-w-[90px] min-h-11 gap-2  bg-pink-300 rounded-xl px-2  w-full justify-center items-center overflow-hidden ">
+      <View className="flex flex-row flex-1  mt-4 min-w-[88px] min-h-12 gap-2  bg-pink-300 rounded-full px-2  w-full justify-center items-center overflow-hidden ">
         <Image
-          source={imagesource}
+          source={imageIcon}
           tintColor={"#151312"}
           className="size-5"
         ></Image>
@@ -25,13 +25,12 @@ const TabIcon = ({ title, focused, icon }: typeIcon): React.JSX.Element => {
     );
   } else {
     return (
-      <View className="flex flex-row flex-1 items-center justify-center min-w-[90px] min-h-11 gap-2">
+      <View className="flex rounded-xl flex-1 items-center justify-center mt-4 min-w-[88px] min-h-12 gap-2">
         <Image
-          source={imagesource}
-          tintColor={"#151312"}
-          className="size-5"
+          source={imageIcon}
+          tintColor={"#ffff"}
+          className="size-5 "
         ></Image>
-        <Text className="text-bold text-base font-semibold">{title}</Text>
       </View>
     );
   }
@@ -43,7 +42,7 @@ export default function Main() {
         tabBarShowLabel: false,
         tabBarItemStyle: {
           width: "100%",
-          height: "100%",
+          height: "60%",
           justifyContent: "center",
           alignItems: "center",
         },
@@ -51,8 +50,9 @@ export default function Main() {
           backgroundColor: "#0f0D23",
           borderRadius: 20,
           marginBottom: 40,
-          marginRight: 20,
-          marginLeft: 20,
+          marginRight: 10,
+          marginLeft: 10,
+          height: 40,
         },
       }}
     >
