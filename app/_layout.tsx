@@ -7,6 +7,7 @@ export default function RootLayout() {
         contentStyle: { backgroundColor: "#1E0B4B" },
       }}
     >
+      <Stack.Screen name="(main)" options={{ headerShown: false }} />
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen name="movies/[id]" options={{ headerShown: false }} />;
     </Stack>

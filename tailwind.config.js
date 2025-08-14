@@ -7,6 +7,7 @@ module.exports = {
       colors: {
         viler: "#43c567",
         primary: "#1E0B4B",
+        auth: "#2563EA",
       },
     },
   },
