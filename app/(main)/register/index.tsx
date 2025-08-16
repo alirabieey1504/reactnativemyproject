@@ -14,7 +14,7 @@ export default function Resitter() {
   };
   return (
     <View className="bg-auth flex-1 flex-col-reverse">
-      <View className="bg-white px-4 h-[550px] rounded-[35px] flex flex-col justify-between pt-20 pb-4">
+      <View className="bg-white px-6 h-[550px] rounded-[35px] flex flex-col justify-between pt-20 pb-4">
         {startStepTwo == 0 ? (
           <>
             <View>
@@ -66,7 +66,7 @@ export default function Resitter() {
             </View>
           </>
         ) : (
-          <TwoStepRegister />
+          <TwoStepRegister phone={phoneNumber} />
         )}
       </View>
     </View>
