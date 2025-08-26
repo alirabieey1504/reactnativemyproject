@@ -7,6 +7,7 @@ export default function Resitter() {
   const [startStepTwo, setStartStepTwo] = useState<number>(0);
   const validationPhoneNumber = () => {
     // setPhoneNumber()
+    console.log(phoneNumber, "this is phone");
     if (phoneNumber.length >= 11 && phoneNumber.length < 12 && phoneNumber) {
       setStartStepTwo(1);
       console.log("this is nubmer");
