@@ -1,22 +1,33 @@
 import React, { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import { Pressable, Text, TextInput, View } from "react-native";
 import axios from "axios";
+import { router } from "expo-router";
 type typePhoneNumber = {
   phone: string;
 };
 
 export default function TwoStepRegister({ phone }: typePhoneNumber) {
   const [values, setValues] = useState(Array(5).fill(""));
+  const [message, setMessage] = useState();
+  const navigate = useNavigation();
   const submitCode = async () => {
     const newb = values.join("");
     const connewb = Number(newb);
     console.log(newb, "this is new v");
-    const response = await axios.post("http://localhost:3000/users/register", {
-      phoneNumber: phone,
-      step: 2,
-      InputCode: connewb,
-    });
-    console.log(response);
+    const response = await axios.post(
+      "http://192.168.43.110:3000/users/register",
+      {
+        phoneNumber: phone,
+        step: 2,
+        InputCode: connewb,
+      }
+    );
+    console.log(response.data, "this is massage");
+    if (response.data.auth == true) {
+      router.navigate("/(main)/home");
+    }
+    setMessage(response.data.message);
     console.log("this is ");
     console.log("this i", values);
   };

@@ -1,14 +1,29 @@
 import TwoStepRegister from "@/components/TwoStepRegister";
+
 import React, { useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import Svg, { G, Path } from "react-native-svg";
+import axios from "axios";
 export default function Resitter() {
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [startStepTwo, setStartStepTwo] = useState<number>(0);
-  const validationPhoneNumber = () => {
-    // setPhoneNumber()
+
+  const validationPhoneNumber = async () => {
+    console.log("this is wwwww");
+
+    console.log("this is post");
     console.log(phoneNumber, "this is phone");
     if (phoneNumber.length >= 11 && phoneNumber.length < 12 && phoneNumber) {
+      console.log("run");
+      const apiPost = await axios.post(
+        "http://192.168.43.110:3000/users/register",
+        {
+          phoneNumber: phoneNumber,
+          step: 1,
+        }
+      );
+      console.log(apiPost, "this is api post");
+
       setStartStepTwo(1);
       console.log("this is nubmer");
     }
@@ -41,14 +56,14 @@ export default function Resitter() {
                     </G>
                   </G>
                 </Svg>
+                <Text className="pl-2">+98</Text>
                 <TextInput
                   value={phoneNumber}
-                  maxLength={11}
                   keyboardType="numeric"
                   onChangeText={(value) => setPhoneNumber(value)}
-                  placeholder="   98 9123456789"
+                  placeholder="9123456789"
                   placeholderClassName="px-10"
-                  className="  py-4  border-gray-300 rounded-xl"
+                  className="  py-4 px-4  border-gray-100 rounded-xl"
                 />
               </View>
             </View>
