@@ -10,10 +10,9 @@ export default function Resitter() {
 
   const validationPhoneNumber = async () => {
     console.log("this is wwwww");
-
     console.log("this is post");
     console.log(phoneNumber, "this is phone");
-    if (phoneNumber.length >= 11 && phoneNumber.length < 12 && phoneNumber) {
+    if (phoneNumber.length >= 10 && phoneNumber.length < 12 && phoneNumber) {
       console.log("run");
       const apiPost = await axios.post(
         "http://192.168.43.110:3000/users/register",
@@ -60,6 +59,7 @@ export default function Resitter() {
                 <TextInput
                   value={phoneNumber}
                   keyboardType="numeric"
+                  maxLength={11}
                   onChangeText={(value) => setPhoneNumber(value)}
                   placeholder="9123456789"
                   placeholderClassName="px-10"

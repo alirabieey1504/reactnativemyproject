@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Pressable, Text, TextInput, View } from "react-native";
 import axios from "axios";
@@ -9,6 +9,7 @@ type typePhoneNumber = {
 
 export default function TwoStepRegister({ phone }: typePhoneNumber) {
   const [values, setValues] = useState(Array(5).fill(""));
+  const ref = useRef([]);
   const [message, setMessage] = useState();
   const navigate = useNavigation();
   const submitCode = async () => {
@@ -35,6 +36,11 @@ export default function TwoStepRegister({ phone }: typePhoneNumber) {
     const newValues = [...values];
     newValues[index] = text;
     setValues(newValues);
+    console.log("ffff");
+  };
+  const testFunction = (t: any) => {
+    console.log(t, "tis is t");
+    console.log("this is test");
   };
   return (
     <View className="w-full text-center flex flex-1 flex-col justify-between ">
@@ -49,9 +55,14 @@ export default function TwoStepRegister({ phone }: typePhoneNumber) {
             {values.map((val, index) => (
               <TextInput
                 key={index}
-                placeholder={``}
+                ref={(el) =>
+                  console.log(ref.current[index], el, "this is log input")
+                }
+                maxLength={1}
+                placeholder={`_`}
                 keyboardType="numeric"
                 value={val}
+                onFocus={(t) => testFunction(t)}
                 onChangeText={(text) => handleChange(text, index)}
                 className="border-2 px-6 border-gray-300 rounded-xl w-16 h-16"
               />
