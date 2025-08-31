@@ -1,13 +1,12 @@
 import { Link } from "expo-router";
 import React from "react";
 import { Image, Text, View } from "react-native";
+import data from "@/data";
+import SliderPreMainPage from "@/components/sliderPreMainPage";
 export default function index() {
   return (
     <View className="p-6 bg-auth flex-1 flex items-center justify-center ">
-      <Image
-        className="mb-10 "
-        source={require("@/assets/images/car.png")}
-      ></Image>
+      <SliderPreMainPage />
       <View className="bg-white w-full rounded-[35px] flex items-center ">
         <Text className="text-bold text-4xl mt-10 ">متنوع و خاص!</Text>
         <Text className="text-center mt-4 ">
