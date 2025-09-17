@@ -4,7 +4,7 @@ import { Text, View } from "react-native";
 import SliderPreMainPage from "@/components/sliderPreMainPage";
 export default function index() {
   return (
-    <View className="p-6 bg-auth flex-1 flex items-center justify-center ">
+    <View className="p-6 bg-auth flex items-start justify-start ">
       <SliderPreMainPage />
       <View className="bg-white w-full rounded-[35px] flex items-center ">
         <Text className="text-bold text-4xl mt-10 ">متنوع و خاص!</Text>
