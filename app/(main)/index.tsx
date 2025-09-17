@@ -1,7 +1,6 @@
 import { Link } from "expo-router";
 import React from "react";
-import { Image, Text, View } from "react-native";
-import data from "@/data";
+import { Text, View } from "react-native";
 import SliderPreMainPage from "@/components/sliderPreMainPage";
 export default function index() {
   return (
