@@ -9,6 +9,7 @@ const SliderPreMainPage = () => {
         data={data}
         renderItem={({ item }) => <OnboardingItem item={item} />}
         horizontal
+        className="h-60 bg-primary "
       />
     </View>
   );
