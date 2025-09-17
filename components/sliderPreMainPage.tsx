@@ -9,6 +9,8 @@ const SliderPreMainPage = () => {
         data={data}
         renderItem={({ item }) => <OnboardingItem item={item} />}
         horizontal
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
         className="h-60 bg-primary "
       />
     </View>

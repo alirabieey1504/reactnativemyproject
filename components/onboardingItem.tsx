@@ -8,7 +8,12 @@ const onboardingItem = ({ item }: any) => {
       <Text className="w-96 mt-40  text-red-300">{item.id}</Text>
       <Text className="w-96 text-red-500">{item.title}</Text>
       <Text className="w-96 text-black">{item.description}</Text>
-      <Image source={item.imageSource} />
+      <Image
+        className="h-"
+        width={300}
+        height={100}
+        source={item.imageSource}
+      />
     </View>
   );
 };
