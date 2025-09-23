@@ -15,15 +15,16 @@ export default function Resitter() {
     if (phoneNumber.length >= 10 && phoneNumber.length < 12 && phoneNumber) {
       console.log("run");
       console.log("salam");
+      setStartStepTwo(1);
+
       const apiPost = await axios.post(
-        "http://192.168.43.110:3000/users/save",
+        "http://192.168.70.194:3000/users/save",
         {
           phoneNumber: phoneNumber,
         }
       );
       console.log("this is ");
 
-      setStartStepTwo(1);
       console.log("this is nubmer");
     }
   };

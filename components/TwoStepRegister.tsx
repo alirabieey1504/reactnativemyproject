@@ -19,16 +19,17 @@ export default function TwoStepRegister({ phone }: typePhoneNumber) {
     const connewb = Number(newb);
     console.log(typeof newb, "this is new v");
     console.log(typeof connewb, "this is new v");
+    console.log(phone, "this is phone");
     console.log(connewb);
     const response = await axios.post(
-      "http://192.168.43.110:3000/users/check",
+      "http://192.168.70.194:3000/users/check",
       {
         phoneNumber: phone,
-        InputCode: connewb,
+        inputCode: connewb,
       }
     );
     console.log(response.data, "this is massage");
-    if (response.data.auth == true) {
+    if (response.data.message == true) {
       router.navigate("/(main)/home");
     }
     setMessage(response.data.message);
@@ -49,8 +50,8 @@ export default function TwoStepRegister({ phone }: typePhoneNumber) {
     <View className="w-full text-center flex flex-1 flex-col justify-between ">
       <View>
         <Text className="text-right  text-4xl font-bold">کد تایید</Text>
-        <Text className="text-right mt-4 ">
-          پیامک حاوی کد تایید به شماره موبایل شما ارسال شده
+        <Text className="text-right mt-4 text-nowrap">
+          پیامک حاوی کد تایید تا دقایقی دیگر به شماره شما ارسال میشود
         </Text>
         <View className=" w-full flex items-center mt-10 mb-4">
           <Text>{phone}</Text>
@@ -58,9 +59,9 @@ export default function TwoStepRegister({ phone }: typePhoneNumber) {
             {values.map((val, index) => (
               <TextInput
                 key={index}
-                ref={(el) =>
-                  console.log(ref.current[index], el, "this is log input")
-                }
+                // ref={(el) =>
+                //   console.log(ref.current[index], el, "this is log input")
+                // }
                 maxLength={1}
                 placeholder={`_`}
                 keyboardType="numeric"
