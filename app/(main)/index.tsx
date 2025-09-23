@@ -1,17 +1,24 @@
 import { Link } from "expo-router";
 import React from "react";
-import { Text, View } from "react-native";
-import SliderPreMainPage from "@/components/sliderPreMainPage";
+import { Text, View, FlatList } from "react-native";
+import data from "@/data";
+import OnboardingItem from "./../../components/onboardingItem";
+
 export default function index() {
   return (
-    <View className="p-6 bg-auth flex items-start justify-start ">
-      <SliderPreMainPage />
-      <View className="bg-white w-full rounded-[35px] flex items-center ">
-        <Text className="text-bold text-4xl mt-10 ">متنوع و خاص!</Text>
-        <Text className="text-center mt-4 ">
-          از سرویس های روزمره تا نیاز های خاص شما!{"\n"} همه در ویلر از پیش
-          اماده شده
-        </Text>
+    <View className="p-6  bg-auth flex flex-1 flex-col justify-end">
+      <View className="items-start ">
+        <FlatList
+          data={data}
+          renderItem={({ item }) => <OnboardingItem item={item} />}
+          horizontal
+          pagingEnabled
+          showsHorizontalScrollIndicator={false}
+          className=" bg-primary "
+        />
+      </View>
+
+      <View className=" bg-white w-full rounded-[35px] flex items-center ">
         <Link
           className="h-14 flex text-white text-xl mt-10 text-center pt-3  items-center justify-center
             bg-auth w-80 rounded-xl"

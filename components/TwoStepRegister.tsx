@@ -12,15 +12,18 @@ export default function TwoStepRegister({ phone }: typePhoneNumber) {
   const ref = useRef([]);
   const [message, setMessage] = useState();
   const navigate = useNavigation();
+
   const submitCode = async () => {
     const newb = values.join("");
+
     const connewb = Number(newb);
-    console.log(newb, "this is new v");
+    console.log(typeof newb, "this is new v");
+    console.log(typeof connewb, "this is new v");
+    console.log(connewb);
     const response = await axios.post(
-      "http://192.168.43.110:3000/users/register",
+      "http://192.168.43.110:3000/users/check",
       {
         phoneNumber: phone,
-        step: 2,
         InputCode: connewb,
       }
     );

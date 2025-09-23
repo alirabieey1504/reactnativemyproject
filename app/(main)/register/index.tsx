@@ -14,14 +14,14 @@ export default function Resitter() {
     console.log(phoneNumber, "this is phone");
     if (phoneNumber.length >= 10 && phoneNumber.length < 12 && phoneNumber) {
       console.log("run");
+      console.log("salam");
       const apiPost = await axios.post(
-        "http://192.168.43.110:3000/users/register",
+        "http://192.168.43.110:3000/users/save",
         {
           phoneNumber: phoneNumber,
-          step: 1,
         }
       );
-      console.log(apiPost, "this is api post");
+      console.log("this is ");
 
       setStartStepTwo(1);
       console.log("this is nubmer");
