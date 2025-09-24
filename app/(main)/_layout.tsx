@@ -7,6 +7,7 @@ export default function _laytout() {
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="home/index" options={{ headerShown: false }} />
       <Stack.Screen name="register/index" options={{ headerShown: false }} />
+      <Stack.Screen name="map/index" options={{ headerShown: false }} />
     </Stack>
   );
 }

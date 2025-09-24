@@ -64,7 +64,7 @@ export default function Resitter() {
                   onChangeText={(value) => setPhoneNumber(value)}
                   placeholder="9123456789"
                   placeholderClassName="px-10"
-                  className="  py-4 px-4  border-gray-100 rounded-xl"
+                  className="py-4 px-4  border-gray-100 rounded-xl"
                 />
               </View>
             </View>

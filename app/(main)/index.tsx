@@ -28,7 +28,7 @@ export default function index() {
         </Link>
         <Link
           className="border-2 border-gray-200 mt-4 text-center pt-3 rounded-xl w-80 h-14 text-xl"
-          href={"./"}
+          href={"./map"}
         >
           پشتیبانی
         </Link>
