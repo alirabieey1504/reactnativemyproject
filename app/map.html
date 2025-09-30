@@ -19,30 +19,37 @@
   <body>
     <div id="map"></div>
     <script>
-      // ایجاد نقشه در ایران
       var map = L.map("map").setView([32.72, 53.68], 6);
-
-      // بارگذاری Tile ها از OSM
+      let count = 0;
+      let start = null;
+      let end = null;
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
       }).addTo(map);
 
-      // افزودن یک مارکر
-      var marker = L.marker([32.72, 53.68]).addTo(map);
-      marker.bindPopup("سلام! اینجا ایران است 🇮🇷").openPopup();
-
-      // رویداد کلیک روی نقشه
       map.on("click", function (e) {
-        L.marker([e.latlng.lat, e.latlng.lng])
-          .addTo(map)
-          .bindPopup(
-            "موقعیت: " +
-              e.latlng.lat.toFixed(4) +
-              ", " +
-              e.latlng.lng.toFixed(4)
-          )
-          .openPopup();
+        count++;
+        let start = [e.latlng.lat, e.latlng.lng];
+        if (count == 1)
+          L.marker([e.latlng.lat, e.latlng.lng])
+            .addTo(map)
+            .bindPopup(
+              "مبدا:" + e.latlng.lat.toFixed(4) + "" + e.latlng.lng.toFixed(4)
+            )
+            .openPopup();
+        if (count == 2) {
+          let end = [e.latlng.lat, e.latlng.lng];
+
+          L.marker(end)
+            .addTo(map)
+            .bindPopup("مقصد:" + e.latlng.toFixed(4) + "ff");
+        }
       });
+
+      var route = L.polyline([end, start], { color: "blue", weight: 4 }).addTo(
+        map
+      );
+      map.fitBounds(route.getBounds());
     </script>
   </body>
 </html>
