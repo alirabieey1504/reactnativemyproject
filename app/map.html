@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Leaflet Map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- CSS & JS Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <style>
+      #map {
+        height: 100vh;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      // ایجاد نقشه در ایران
+      var map = L.map("map").setView([32.72, 53.68], 6);
+
+      // بارگذاری Tile ها از OSM
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+      }).addTo(map);
+
+      // افزودن یک مارکر
+      var marker = L.marker([32.72, 53.68]).addTo(map);
+      marker.bindPopup("سلام! اینجا ایران است 🇮🇷").openPopup();
+
+      // رویداد کلیک روی نقشه
+      map.on("click", function (e) {
+        L.marker([e.latlng.lat, e.latlng.lng])
+          .addTo(map)
+          .bindPopup(
+            "موقعیت: " +
+              e.latlng.lat.toFixed(4) +
+              ", " +
+              e.latlng.lng.toFixed(4)
+          )
+          .openPopup();
+      });
+    </script>
+  </body>
+</html>
