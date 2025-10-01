@@ -8,7 +8,7 @@
     <!-- CSS & JS Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
     <style>
       #map {
         height: 100vh;
@@ -19,37 +19,97 @@
   <body>
     <div id="map"></div>
     <script>
+      window.resetSelection = function () {
+        console.log("this is test");
+        console.log("Reset called");
+        markers.forEach((m) => map.removeLayer(m));
+        markers = [];
+        if (route) map.removeLayer(route);
+        route = null;
+        start = null;
+        end = null;
+        count = 0;
+        control = null;
+      };
       var map = L.map("map").setView([32.72, 53.68], 6);
       let count = 0;
       let start = null;
       let end = null;
+      let markers = [];
+      let marker = [];
+      let route = null;
+      let control = null;
+
+      let svgIconDestination = L.divIcon({
+        className: "",
+        html: `
+        <svg width="26" height="38" viewBox="0 0 26 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <rect x="4" y="4" width="18" height="18" rx="5" stroke="#4A7DFF" stroke-width="7"/>
+         <line x1="13" y1="25" x2="13" y2="38" stroke="#4A7DFF" stroke-width="2"/>
+        </svg>
+        `,
+        iconSize: [40, 40],
+        iconAnchor: [20, 40],
+      });
+      let svgIconOrigin = L.divIcon({
+        className: "",
+        html: `
+         <svg width="26" height="38" viewBox="0 0 26 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+           <path d="M13 22C17.9706 22 22 17.9706 22 13C22 8.02944 17.9706 4 13 4C8.02944 4 4 8.02944 4 13C4 17.9706 8.02944 22 13 22Z" stroke="#4A7DFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="13" y1="25" x2="13" y2="38" stroke="#4A7DFF" stroke-width="2"/>
+         </svg>`,
+        iconSize: [40, 40],
+        iconAnchor: [20, 40],
+      });
+
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
       }).addTo(map);
 
       map.on("click", function (e) {
         count++;
-        let start = [e.latlng.lat, e.latlng.lng];
-        if (count == 1)
-          L.marker([e.latlng.lat, e.latlng.lng])
+        if (count == 1) {
+          start = [e.latlng.lat, e.latlng.lng];
+          marker = L.marker(start, { icon: svgIconOrigin })
             .addTo(map)
             .bindPopup(
               "مبدا:" + e.latlng.lat.toFixed(4) + "" + e.latlng.lng.toFixed(4)
             )
             .openPopup();
+          markers.push(marker);
+        }
         if (count == 2) {
-          let end = [e.latlng.lat, e.latlng.lng];
-
-          L.marker(end)
+          end = [e.latlng.lat, e.latlng.lng];
+          marker = L.marker(end, { icon: svgIconDestination })
             .addTo(map)
-            .bindPopup("مقصد:" + e.latlng.toFixed(4) + "ff");
+            .bindPopup(
+              "مبدا:" + e.latlng.lat.toFixed(4) + "" + e.latlng.lng.toFixed(4)
+            );
+          markers.push(marker);
+
+          // route = L.polyline([start, end], {
+          //   color: "blue",
+          //   weight: 4,
+          // }).addTo(map);
+          // map.fitBounds(route.getBounds());
+
+          if (control) map.removeControl(control); // اگر مسیر قبلی بود پاک کن
+          control = L.Routing.control({
+            waypoints: [L.latLng(start[0], start[1]), L.latLng(end[0], end[1])],
+            routeWhileDragging: false,
+            show: false,
+          }).addTo(map);
+
+          if (window.ReactNativeWebView) {
+            window.ReactNativeWebView.postMessage(
+              JSON.stringify({
+                start: start,
+                end: end,
+              })
+            );
+          }
         }
       });
-
-      var route = L.polyline([end, start], { color: "blue", weight: 4 }).addTo(
-        map
-      );
-      map.fitBounds(route.getBounds());
     </script>
   </body>
 </html>
