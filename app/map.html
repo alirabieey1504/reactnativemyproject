@@ -92,8 +92,7 @@
           //   weight: 4,
           // }).addTo(map);
           // map.fitBounds(route.getBounds());
-
-          if (control) map.removeControl(control); // اگر مسیر قبلی بود پاک کن
+          if (control) map.removeControl(control);
           control = L.Routing.control({
             waypoints: [L.latLng(start[0], start[1]), L.latLng(end[0], end[1])],
             routeWhileDragging: false,
